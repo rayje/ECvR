@@ -72,4 +72,4 @@ Start the Stor server on a single instance.
 
 Example:
 
-	$ stor --start 192.168.1.100 -p 192.168.1.100 -m 10 -r 5
+	$ ./stor --start 192.168.1.100 -p 192.168.1.100 -m 10 -r 5
