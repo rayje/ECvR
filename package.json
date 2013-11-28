@@ -1,0 +1,22 @@
+{
+  "name": "ECvR",
+  "version": "0.0.1",
+  "description": "A set of node scripts to test Stor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rayje/ECvR.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/rayje/ECvR/issues"
+  },
+  "dependencies": {
+    "ssh2": "~0.2.14",
+    "commander": "~2.0.0"
+  }
+}
