@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Instances = require('./lib/instances');
+var Instances = require('./lib/instances'),
 	config = require('./config.json');
 
 var options = config.futuregrid;
