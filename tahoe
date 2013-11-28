@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var commandLine = require('commander'), 
+	factory = require('./lib/tahoeFactory'),
+	config = require('./config.json'),
+	options = getOptions(),
+	Runner = factory.getRunner(options);
+
+if (!Runner) {
+	console.log('Unknown options');
+	options.help();
+}
+
+var runner = new Runner(config);
+runner.run(options);
+
+function getOptions() {
+	commandLine
+		.version('0.0.1')
+		.description('A command line utility for remote tahoe servers')
+		.option('-k, --kill <nodeIp>', 'Stop a storage node')
+
+	commandLine.parse(process.argv);
+	return commandLine;
+}
