@@ -40,4 +40,5 @@ The following is a description of the scripts contained in this repo.
 Gets the Ip Addresses of the instances associated with the Stor project.
 
 To run the script:
+
 	$ ./getIps
