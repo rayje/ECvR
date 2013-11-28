@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+var commandLine = require('commander'), 
+	factory = require('./lib/runnerFactory'),
+	config = require('./config.json'),
+	options = getOptions(),
+	Runner = factory.getRunner(options);
+
+if (!Runner) {
+	console.log('Unknown options');
+	options.help();
+}
+
+var runner = new Runner(config);
+runner.run(options);
+
+
+function getOptions() {
+	commandLine
+		.version('0.0.1')
+		.description('A command line client for remote Stor servers')
+		.option('--start <instanceId>', 'Start the stor server on a specific instance')
+		.option('--startAll', 'Start the stor server on all instances')
+		.option('-p, --ringServer <ipAddress>', 'The ip address of the Pastry ring server')
+		.option('-m, --capacity <capacity>', 'The storage capacity for the Stor server [Default: 10]', 10)
+		.option('-d, --storage <directory>', 'The storage directory for the Stor server [Default: $HOME/Stor_Age]', '$HOME/Stor_Age')
+		.option('-r, --replication <rep>', 'The replication factor setting [Default: 5]', 5)
+		.option('--stop <instanceId>', 'Stop the stor server in a specific instance')
+		.option('--stopAll', 'Stop the stor server on all instances')
+
+	commandLine.parse(process.argv);
+	return commandLine;
+}
