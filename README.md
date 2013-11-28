@@ -31,7 +31,8 @@ The config file is expected to contain the following format:
 		}
 	}
 
-### Scripts
+Scripts
+-------
 
 The following is a description of the scripts contained in this repo.
 
@@ -43,7 +44,8 @@ To run the script:
 
 	$ ./getIps
 
-### stor
+stor
+----
 
 A script to run stor commands on a remote server.
 
@@ -82,7 +84,8 @@ Example:
 	
 	$ ./stor --stop 192.168.1.100
 
-### tahoe
+tahoe
+-----
 
 A script to run commands on a tahoe node
 
