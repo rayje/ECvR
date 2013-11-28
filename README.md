@@ -81,3 +81,17 @@ Stop the Stor server on a single instance.
 Example:
 	
 	$ ./stor --stop 192.168.1.100
+
+### tahoe
+
+A script to run commands on a tahoe node
+
+	$ ./tahoe --help
+
+	  Usage: tahoe [options]
+
+	  Options:
+
+	    -h, --help           output usage information
+	    -V, --version        output the version number
+	    -k, --kill <nodeIp>  Stop a storage node
