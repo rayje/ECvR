@@ -42,3 +42,34 @@ Gets the Ip Addresses of the instances associated with the Stor project.
 To run the script:
 
 	$ ./getIps
+
+### stor
+
+A script to run stor commands on a remote server.
+
+	$ ./stor --help
+
+	  Usage: stor [options]
+
+	  Options:
+
+	    -h, --help                    output usage information
+	    -V, --version                 output the version number
+	    --start <instanceId>          Start the stor server on a specific instance
+	    --startAll                    Start the stor server on all instances
+	    -p, --ringServer <ipAddress>  The ip address of the Pastry ring server
+	    -m, --capacity <capacity>     The storage capacity for the Stor server [Default: 10]
+	    -d, --storage <directory>     The storage directory for the Stor server [Default: $HOME/Stor_Age]
+	    -r, --replication <rep>       The replication factor setting [Default: 5]
+	    --stop <instanceId>           Stop the stor server in a specific instance
+	    --stopAll                     Stop the stor server on all instances
+
+#### Commands
+
+***Start***
+
+Start the Stor server on a single instance.
+
+Example:
+
+	$ stor --start 192.168.1.100 -p 192.168.1.100 -m 10 -r 5
