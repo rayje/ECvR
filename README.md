@@ -38,7 +38,8 @@ The following is a description of the scripts contained in this repo.
 
 #### getInstances
 
-Gets information of future grid instances associated with the Stor project.
+Gets information of future grid instances associated with the Stor project. This
+script will write the result in JSON format to a file named ```instances.json```.
 
 	$ ./getInstances --help
 
@@ -56,6 +57,19 @@ To run the script:
 	$ ./getInstances --imageId <imageId> --keyName <keyName>
 
 **Note**: Both ```imageId``` and ```keyName``` are required
+
+#### readInstances
+
+Reads and displays the content found in the file ```instances.json``` in tabular format.
+
+	$ ./readInstances
+
+	instanceId  | imageId       | keyName | instanceType | ipAddress        | privateIpAddress |
+	-----------   -------------   -------   ------------   ----------------   ----------------
+	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
+	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
+	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
+	
 
 stor
 ----
