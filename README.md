@@ -8,19 +8,19 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [Setup](#setup)
 * [Config](#config)
 
-### [Scripts](#scripts)
+### [Scripts](#scripts-1)
 
 * [getInstances](#getInstances)
 * [readInstances](#readInstances)
 
-### [Stor](#stor)
+### [Stor](#stor-1)
 * [start](#start)
 * [startAll](#start-all)
 * [stop](#stop)
 * [stopAll](#stop-all)
 * [status](#status)
 
-### [Tahoe](#tahoe)
+### [Tahoe](#tahoe-1)
 
 
 ### Setup
