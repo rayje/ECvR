@@ -89,6 +89,10 @@ Example:
 
 	$ ./stor --start 192.168.1.100 -p 192.168.1.100 -m 10 -r 5
 
+or
+
+	$ ./stor --start i-00004545 -p 10.1.2.100
+
 ***Stop***
 
 Stop the Stor server on a single instance.
@@ -96,6 +100,10 @@ Stop the Stor server on a single instance.
 Example:
 	
 	$ ./stor --stop 192.168.1.100
+
+or 
+
+	$ ./stor --stop i-00004545
 
 tahoe
 -----
