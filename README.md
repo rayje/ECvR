@@ -56,7 +56,7 @@ To run the script:
 
 	$ ./getInstances --imageId <imageId> --keyName <keyName>
 
-**Note**: Both ```imageId``` and ```keyName``` are required
+**Note**: ```imageId``` is required
 
 #### readInstances
 
