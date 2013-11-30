@@ -93,6 +93,7 @@ A script to run stor commands on a remote server.
 	    --stop <instanceId>           Stop the stor server in a specific instance
 	    --stopAll                     Stop the stor server on all instances
 	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
+	    --status                      Displays the status of Stor on all instances
 
 #### Commands
 
@@ -149,7 +150,19 @@ or
 	
 	$ ./stor --stopAll -e <public address>
 
-	
+
+***Status***
+
+Display the status of the stor server on all instances
+
+Example:
+
+	$ ./stor --status
+	instanceId   | keyName  | ipAddress        | privateIpAddress | running |
+	------------   --------   ----------------   ----------------   -------
+	i-000xxxx1   | my-key   | xxx.xxx.xxx.xx1  | xxx.xxx.xxx.xx1  | true    |
+	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | false   |
+	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | false   |	
 
 tahoe
 -----
