@@ -28,6 +28,7 @@ function getOptions() {
 		.option('--stop <instanceId>', 'Stop the stor server in a specific instance')
 		.option('--stopAll', 'Stop the stor server on all instances')
 		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
+		.option('--status', 'Displays the status of Stor on all instances')
 
 	commandLine.parse(process.argv);
 	return commandLine;
