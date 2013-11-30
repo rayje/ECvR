@@ -92,6 +92,7 @@ A script to run stor commands on a remote server.
 	    -r, --replication <rep>       The replication factor setting [Default: 5]
 	    --stop <instanceId>           Stop the stor server in a specific instance
 	    --stopAll                     Stop the stor server on all instances
+	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
 
 #### Commands
 
@@ -135,6 +136,20 @@ Example:
 or 
 
 	$ ./stor --stop i-00004545
+
+***Stop All***
+
+Stops all the Stor servers found, minus those specified with the excludes flag.
+
+Example:
+
+	$ ./stor --stopAll -e i-00001234
+
+or 
+	
+	$ ./stor --stopAll -e <public address>
+
+	
 
 tahoe
 -----
