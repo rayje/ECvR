@@ -11,8 +11,6 @@ validateOptons(options);
 
 var instances = new Instances(config.futuregrid);
 
-var keys = ['imageId', 'dnsName', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress'];
-
 instances.get(function(err, results) {
 	if (err) {
 		return console.log(err);
@@ -21,24 +19,42 @@ instances.get(function(err, results) {
 	var matches = []
 	results.forEach(function(result) {
 		if (result.hasOwnProperty('imageId') && result.imageId === options.imageId) {
-			if (result.hasOwnProperty('keyName') && result.keyName === options.keyName) {
-				printResult(result);
-				matches.push(result);	
+			if (options.keyName) {
+				if (result.hasOwnProperty('keyName') && result.keyName === options.keyName) {
+					matches.push(result);	
+				}
+			} else {
+				matches.push(result);
 			}
 		}
 	});
 
+	printResults(matches);
 	writeResults(matches);
 });
 
-function printResult(result) {
-	console.log('=====================================');
-	console.log('instanceId:', result.instanceId);
-	console.log('=====================================');
+function printResults(results) {
+	var keys = ['imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress'];
+	var header = '';
+	var border = '';
+	var width = 17;
+	var format = '%-' + width + 's| ';
+	var borderFormat = "%+'-" + (width + 2) + "s"
+
 	keys.forEach(function(key){
-		console.log(sprintf('%16s: %-32s', key, result[key]));	
+		header += sprintf(format, key);	
+		border += sprintf(borderFormat, '   ');
 	});
-	console.log('-------------------------------------');
+	console.log(header);
+	console.log(border);
+
+	results.forEach(function(result){
+		var line = '';
+		keys.forEach(function(key){
+			line += sprintf(format, result[key]);	
+		});	
+		console.log(line);
+	});
 }
 
 function writeResults(results) {
@@ -62,7 +78,6 @@ function getOptions() {
 
 function validateOptons(options) {
 	validateRequired(options, 'imageId');
-	validateRequired(options, 'keyName');
 }
 
 function validateRequired(options, key) {
