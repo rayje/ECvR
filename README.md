@@ -36,13 +36,26 @@ Scripts
 
 The following is a description of the scripts contained in this repo.
 
-#### getIps
+#### getInstances
 
-Gets the Ip Addresses of the instances associated with the Stor project.
+Gets information of future grid instances associated with the Stor project.
+
+	$ ./getInstances --help
+
+	  Usage: getInstances [options]
+
+	  Options:
+
+	    -h, --help           output usage information
+	    -V, --version        output the version number
+	    --imageId <imageId>  The image id used to filter the search.
+	    --keyName <keyName>  The keyName used to filter the search.
 
 To run the script:
 
-	$ ./getIps
+	$ ./getInstances --imageId <imageId> --keyName <keyName>
+
+**Note**: Both ```imageId``` and ```keyName``` are required
 
 stor
 ----
