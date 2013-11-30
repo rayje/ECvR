@@ -27,6 +27,7 @@ function getOptions() {
 		.option('-r, --replication <rep>', 'The replication factor setting [Default: 5]', 5)
 		.option('--stop <instanceId>', 'Stop the stor server in a specific instance')
 		.option('--stopAll', 'Stop the stor server on all instances')
+		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
 
 	commandLine.parse(process.argv);
 	return commandLine;
