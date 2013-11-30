@@ -29,33 +29,9 @@ instances.get(function(err, results) {
 		}
 	});
 
-	printResults(matches);
+	instances.printResults(matches);
 	writeResults(matches);
 });
-
-function printResults(results) {
-	var keys = ['instanceId', 'imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress'];
-	var header = '';
-	var border = '';
-	var width = 17;
-	var format = '%-' + width + 's| ';
-	var borderFormat = "%+'-" + (width + 2) + "s"
-
-	keys.forEach(function(key){
-		header += sprintf(format, key);	
-		border += sprintf(borderFormat, '   ');
-	});
-	console.log(header);
-	console.log(border);
-
-	results.forEach(function(result){
-		var line = '';
-		keys.forEach(function(key){
-			line += sprintf(format, result[key]);	
-		});	
-		console.log(line);
-	});
-}
 
 function writeResults(results) {
 	fs.writeFile('instances.json', JSON.stringify(results), function(err) {

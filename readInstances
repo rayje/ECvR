@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var Instances = require('./lib/instances');
+
+new Instances().printInstances('instances.json');
