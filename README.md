@@ -3,6 +3,26 @@ ECvR
 
 A set of test scripts for verifying Erasure Coding vs Replication.
 
+### Contents
+
+* [Setup](#setup)
+* [Config](#config)
+
+### [Scripts](#scripts)
+
+* [getInstances](#getInstances)
+* [readInstances](#readInstances)
+
+### [Stor](#stor)
+* [start](#start)
+* [startAll](#start-all)
+* [stop](#stop)
+* [stopAll](#stop-all)
+* [status](#status)
+
+### [Tahoe](#tahoe)
+
+
 ### Setup
 
 To install run the following commands:
@@ -97,7 +117,7 @@ A script to run stor commands on a remote server.
 
 #### Commands
 
-***Start***
+##### Start
 
 Start the Stor server on a single instance.
 
@@ -110,7 +130,7 @@ or
 	$ ./stor --start i-00004545 -p 10.1.2.123
 
 
-***Start All***
+##### Start All
 
 Starts all stor servers.
 
@@ -126,7 +146,7 @@ Example:
 
 
 
-***Stop***
+##### Stop
 
 Stop the Stor server on a single instance.
 
@@ -138,7 +158,7 @@ or
 
 	$ ./stor --stop i-00004545
 
-***Stop All***
+##### Stop All
 
 Stops all the Stor servers found, minus those specified with the excludes flag.
 
@@ -151,7 +171,7 @@ or
 	$ ./stor --stopAll -e <public address>
 
 
-***Status***
+##### Status
 
 Display the status of the stor server on all instances
 
