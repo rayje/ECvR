@@ -69,7 +69,7 @@ Reads and displays the content found in the file ```instances.json``` in tabular
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
-	
+
 
 stor
 ----
@@ -105,7 +105,24 @@ Example:
 
 or
 
-	$ ./stor --start i-00004545 -p 10.1.2.100
+	$ ./stor --start i-00004545 -p 10.1.2.123
+
+
+***Start All***
+
+Starts all stor servers.
+
+This command will read the addresses of the instances found in ```instances.json``` and run the start stor 
+command for each instance minus the ring server.
+
+**Note**: It is expected that the ring server already be started before this script runs. This script WILL NOT
+try to start the ring server.
+
+Example:
+
+	$ ./stor --startAll -p 10.1.2.123
+
+
 
 ***Stop***
 
