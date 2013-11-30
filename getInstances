@@ -34,7 +34,7 @@ instances.get(function(err, results) {
 });
 
 function printResults(results) {
-	var keys = ['imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress'];
+	var keys = ['instanceId', 'imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress'];
 	var header = '';
 	var border = '';
 	var width = 17;
