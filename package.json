@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "ssh2": "~0.2.14",
-    "commander": "~2.0.0"
+    "commander": "~2.0.0",
+    "sprintf-js": "0.0.7"
   }
 }
