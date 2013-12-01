@@ -21,7 +21,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [status](#status)
 
 ### [Tahoe](#tahoe-1)
-
+* [kill](#kill)
 
 ### Setup
 
@@ -198,3 +198,16 @@ A script to run commands on a tahoe node
 	    -h, --help           output usage information
 	    -V, --version        output the version number
 	    -k, --kill <nodeIp>  Stop a storage node
+
+
+##### Stop
+
+Stop the tahoe storage node on a single instance.
+
+Example:
+	
+	$ ./tahoe --kill 192.168.1.100
+
+or 
+
+	$ ./tahoe --kill i-00004545
