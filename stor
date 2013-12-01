@@ -11,6 +11,9 @@ if (!Runner) {
 	options.help();
 }
 
+if (options.debug) {
+	config.debug = options.debug;
+}
 var runner = new Runner(config);
 runner.run(options);
 
@@ -29,6 +32,7 @@ function getOptions() {
 		.option('--stopAll', 'Stop the stor server on all instances')
 		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
 		.option('--status', 'Displays the status of Stor on all instances')
+		.option('--debug', 'Run in debug mode')
 
 	commandLine.parse(process.argv);
 	return commandLine;
