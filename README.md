@@ -200,7 +200,7 @@ A script to run commands on a tahoe node
 	    -k, --kill <nodeIp>  Stop a storage node
 
 
-##### Stop
+##### Kill
 
 Stop the tahoe storage node on a single instance.
 
