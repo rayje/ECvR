@@ -196,9 +196,11 @@ A script to run commands on a tahoe node
 
 	  Options:
 
-	    -h, --help           output usage information
-	    -V, --version        output the version number
-	    -k, --kill <nodeIp>  Stop a storage node
+	    -h, --help                    output usage information
+	    -V, --version                 output the version number
+	    -k, --kill <nodeIp>           Stop a storage node
+	    -a, --killAll                 Stop all storage nodes
+	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
 
 
 ##### Kill
