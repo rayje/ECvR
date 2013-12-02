@@ -22,6 +22,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 
 ### [Tahoe](#tahoe-1)
 * [kill](#kill)
+* [killAll](#kill-all)
 
 ### Setup
 
@@ -211,3 +212,15 @@ Example:
 or 
 
 	$ ./tahoe --kill i-00004545
+
+##### Kill All
+
+Stops all the storage nodes found, minus those specified with the excludes flag.
+
+Example:
+
+	$ ./tahoe --killAll -e i-00001234
+
+or 
+	
+	$ ./tahoe --killAll -e <public address>
