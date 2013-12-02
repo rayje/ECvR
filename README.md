@@ -19,6 +19,8 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [stop](#stop)
 * [stopAll](#stop-all)
 * [status](#status)
+* [putFile](#put-file)
+* [getFile](#get-file)
 
 ### [Tahoe](#tahoe-1)
 * [kill](#kill)
@@ -171,6 +173,22 @@ Example:
 or 
 	
 	$ ./stor --stopAll -e <public address>
+
+##### Put File
+
+Executes the PUT command on the instance of the Stor server identified.
+
+Example:
+
+	$ ./stor --put i-00001234 --filePath /tmp/A
+
+##### Get File
+
+Executes the GET command on the instance of the Stor server identified.
+
+Example:
+
+	$ ./stor --get i-00001234 --fileKey KEY
 
 
 ##### Status
