@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+var commandLine = require('commander'),
+	config = require('./config.json'),
+	Remote = require('./lib/remote'),
+	Instance = require('./lib/instances');
+
+var options = getOptions();
+validateOptions(options);
+
+var instance = new Instance();
+instanceAddress = instance.getAddress(options.instanceId);
+
+var remote = new Remote(config.stor);
+
+remote.run('df -h /', instanceAddress,
+	function(err, data, extended){
+		if(err == null)
+		{
+			console.log(data.toString());
+		}
+	}, 
+	function(code, signal){
+		if(code)
+		{
+			console.log("ERROR: ", code, signal);
+		}
+	}
+);
+
+function getOptions() {
+	commandLine
+		.version('0.0.1')
+		.description('Used to get root filesystem usage on the instance')
+		.option('--instanceId <imageId>', 'The instanceId')
+
+	commandLine.parse(process.argv);
+	return commandLine;
+}
+
+function validateOptions(options) {
+	validateRequired(options, 'instanceId');
+}
+
+function validateRequired(options, key) {
+	if (!options[key]) {
+		console.log('Missing required param: ' + key);
+		options.help();
+	}
+}
