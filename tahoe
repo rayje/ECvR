@@ -11,6 +11,9 @@ if (!Runner) {
 	options.help();
 }
 
+if (options.debug) {
+	config.debug = options.debug;
+}
 var runner = new Runner(config);
 runner.run(options);
 
@@ -21,6 +24,8 @@ function getOptions() {
 		.option('-k, --kill <nodeIp>', 'Stop a storage node')
 		.option('-a, --killAll', 'Stop all storage nodes')
 		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
+		.option('--status', 'Displays the status of Tahoe on all instances')
+		.option('--debug', 'Run in debug mode')
 
 	commandLine.parse(process.argv);
 	return commandLine;
