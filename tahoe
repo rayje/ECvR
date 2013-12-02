@@ -19,6 +19,8 @@ function getOptions() {
 		.version('0.0.1')
 		.description('A command line utility for remote tahoe servers')
 		.option('-k, --kill <nodeIp>', 'Stop a storage node')
+		.option('-a, --killAll', 'Stop all storage nodes')
+		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
 
 	commandLine.parse(process.argv);
 	return commandLine;
