@@ -32,7 +32,7 @@ function getOptions() {
 	commandLine
 		.version('0.0.1')
 		.description('Used to get root filesystem usage on the instance')
-		.option('--instanceId <imageId>', 'The instanceId')
+		.option('--instanceId <instanceId>', 'The instanceId')
 
 	commandLine.parse(process.argv);
 	return commandLine;
