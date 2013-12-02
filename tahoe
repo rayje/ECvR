@@ -26,6 +26,7 @@ function getOptions() {
 		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
 		.option('--status', 'Displays the status of Tahoe on all instances')
 		.option('--debug', 'Run in debug mode')
+		.option('--capture', 'Capture storage measurement')
 
 	commandLine.parse(process.argv);
 	return commandLine;
