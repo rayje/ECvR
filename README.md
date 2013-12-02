@@ -10,9 +10,9 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 
 ### [Scripts](#scripts-1)
 
-* [getInstances](#getInstances)
-* [readInstances](#readInstances)
-* [getUsage](#getUsage)
+* [getInstances](#getinstances)
+* [readInstances](#readinstances)
+* [getUsage](#getusage)
 
 ### [Stor](#stor-1)
 * [start](#start)
@@ -27,6 +27,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [kill](#kill)
 * [killAll](#kill-all)
 * [status](#status-1)
+* [capture](#capture)
 
 ### Setup
 
@@ -231,6 +232,9 @@ A script to run commands on a tahoe node
 	    -k, --kill <nodeIp>           Stop a storage node
 	    -a, --killAll                 Stop all storage nodes
 	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
+	    --status                      Displays the status of Tahoe on all instances
+	    --debug                       Run in debug mode
+	    --capture                     Capture storage measurement
 
 
 ##### Kill
@@ -269,3 +273,16 @@ Example:
 	i-000xxxx1   | my-key   | xxx.xxx.xxx.xx1  | xxx.xxx.xxx.xx1  | true    |
 	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | false   |
 	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | false   |
+
+##### Capture
+
+Display the size of the contents within the .tahoe/storage directory on all instances
+
+Example:
+
+	$ ./tahoe --capture
+	instanceId   | keyName  | ipAddress        | privateIpAddress | storage |
+	------------   --------   ----------------   ----------------   -------
+	i-000xxxx1   | my-key   | xxx.xxx.xxx.xx1  | xxx.xxx.xxx.xx1  | 31960   |
+	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | 0       |
+	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | 31959   |
