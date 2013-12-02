@@ -12,6 +12,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 
 * [getInstances](#getInstances)
 * [readInstances](#readInstances)
+* [getUsage](#getUsage)
 
 ### [Stor](#stor-1)
 * [start](#start)
@@ -94,6 +95,16 @@ Reads and displays the content found in the file ```instances.json``` in tabular
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 
+#### getUsage 
+
+Executes the "df -h /" command on the instance and returns the output
+
+Example: 
+
+	$ ./getUsage --instanceId <instanceId>
+
+	Filesystem      Size  Used Avail Use% Mounted on
+	/dev/vda2       5.4G  1.5G  3.6G  29% /
 
 stor
 ----
