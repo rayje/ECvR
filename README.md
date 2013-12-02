@@ -23,6 +23,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 ### [Tahoe](#tahoe-1)
 * [kill](#kill)
 * [killAll](#kill-all)
+* [status](#status-1)
 
 ### Setup
 
@@ -226,3 +227,16 @@ Example:
 or 
 	
 	$ ./tahoe --killAll -e <public address>
+
+##### Status
+
+Display the status of the tahoe storage nodes on all instances
+
+Example:
+
+	$ ./tahoe --status
+	instanceId   | keyName  | ipAddress        | privateIpAddress | running |
+	------------   --------   ----------------   ----------------   -------
+	i-000xxxx1   | my-key   | xxx.xxx.xxx.xx1  | xxx.xxx.xxx.xx1  | true    |
+	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | false   |
+	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | false   |
