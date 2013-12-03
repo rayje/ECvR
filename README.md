@@ -12,7 +12,6 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 
 * [getInstances](#getinstances)
 * [readInstances](#readinstances)
-* [getUsage](#getusage)
 
 ### [Stor](#stor-1)
 * [start](#start)
@@ -22,6 +21,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [status](#status)
 * [putFile](#put-file)
 * [getFile](#get-file)
+* [getUsage](#get-usage)
 
 ### [Tahoe](#tahoe-1)
 * [kill](#kill)
@@ -96,17 +96,6 @@ Reads and displays the content found in the file ```instances.json``` in tabular
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 
-#### getUsage 
-
-Executes the "df -h /" command on the instance and returns the output
-
-Example: 
-
-	$ ./getUsage --instanceId <instanceId>
-
-	Filesystem      Size  Used Avail Use% Mounted on
-	/dev/vda2       5.4G  1.5G  3.6G  29% /
-
 stor
 ----
 
@@ -130,6 +119,7 @@ A script to run stor commands on a remote server.
 	    --stopAll                     Stop the stor server on all instances
 	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
 	    --status                      Displays the status of Stor on all instances
+	    --getUsage 			  Displays the file system usage for all instances
 
 #### Commands
 
@@ -159,8 +149,6 @@ try to start the ring server.
 Example:
 
 	$ ./stor --startAll -p 10.1.2.123
-
-
 
 ##### Stop
 
@@ -216,6 +204,19 @@ Example:
 	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | false   |
 	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | false   |	
 
+##### Get Usage
+
+Display the file system usage of for all instances
+Optional parameters: 
+	-e, --exclude xxx.xxx.xxx.xx1,xxx.xxx.xxx.xx2
+	-d, --storage <storage directory>
+
+Example:
+	$ ./stor --getUsage 
+
+	xxx.xxx.xxx.xxa - Ok - 12345
+	xxx.xxx.xxx.xxb - Err - Error info
+	
 tahoe
 -----
 

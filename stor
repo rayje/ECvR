@@ -37,6 +37,7 @@ function getOptions() {
 		.option('--filePath <filePath>', 'File path for the file to save in Stor')
 		.option('--get <instanceId>', 'Execute the stor client GET command on the specified instanceId')
 		.option('--fileKey <fileKey>', 'File key as returned by the PUT command')
+		.option('--getUsage', 'Get file system space usage for all instances')
 
 	commandLine.parse(process.argv);
 	return commandLine;
