@@ -28,6 +28,9 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [killAll](#kill-all)
 * [status](#status-1)
 * [capture](#capture)
+* [startInt](#start-int)
+* [killInt](#kill-int)
+
 
 ### Setup
 
@@ -290,3 +293,25 @@ Example:
 	i-000xxxx1   | my-key   | xxx.xxx.xxx.xx1  | xxx.xxx.xxx.xx1  | 31960   |
 	i-000xxxx2   | my-key   | xxx.xxx.xxx.xx2  | xxx.xxx.xxx.xx2  | 0       |
 	i-000xxxx3   | my-key   | xxx.xxx.xxx.xx3  | xxx.xxx.xxx.xx3  | 31959   |
+
+##### Start Int
+
+Starts an introducer node on the IP address of the instance
+    
+	--startInt <nodeIp>           Start an introducer node on the specified instance
+
+Example: 
+
+	$ ./tahoe --startInt xxx.xxx.xxx.xx1
+
+
+##### Kill Int
+
+Terminates the introducer node on the IP address of the instance, also deletes the .tahoe-int directory
+
+    --killInt <nodeIp>            Kill an introducer running on the specified instance
+
+Example: 
+
+	$ ./tahoe --killInt xxx.xxx.xxx.xx1
+
