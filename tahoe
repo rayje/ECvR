@@ -29,6 +29,7 @@ function getOptions() {
 		.option('--capture', 'Capture storage measurement')
 		.option('--startInt <nodeIp>', 'Start an introducer node on the specified instance')
 		.option('--killInt <nodeIp>', 'Kill an introducer running on the specified instance')
+		.option('--startAll <introducerNodeIp>', 'Start tahoe storage nodes on all but the introducer node')
 
 	commandLine.parse(process.argv);
 	return commandLine;
