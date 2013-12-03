@@ -207,14 +207,19 @@ Example:
 ##### Get Usage
 
 Display the file system usage of for all instances
+
 Optional parameters: 
+
 	-e, --exclude xxx.xxx.xxx.xx1,xxx.xxx.xxx.xx2
+
 	-d, --storage <storage directory>
 
 Example:
+
 	$ ./stor --getUsage 
 
 	xxx.xxx.xxx.xxa - Ok - 12345
+
 	xxx.xxx.xxx.xxb - Err - Error info
 	
 tahoe
