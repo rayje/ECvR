@@ -30,6 +30,10 @@ function getOptions() {
 		.option('--startInt <nodeIp>', 'Start an introducer node on the specified instance')
 		.option('--killInt <nodeIp>', 'Kill an introducer running on the specified instance')
 		.option('--startAll <introducerNodeIp>', 'Start tahoe storage nodes on all but the introducer node')
+		.option('--put <nodeId>', 'Put a file on tahoe.')
+		.option('--filePath <filePath>', 'The path to the file used for the put command.')
+		.option('--get <nodeId>', 'Get a file from tahoe')
+		.option('--filename <filename>', 'The name of the remote file')
 
 	commandLine.parse(process.argv);
 	return commandLine;
