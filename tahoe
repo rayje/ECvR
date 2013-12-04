@@ -35,7 +35,7 @@ function getOptions() {
 		.option('--get <nodeId>', 'Get a file from tahoe')
 		.option('--filename <filename>', 'The name of the remote file')
 		.option('--config <nodeId>', 'Set a tahoe configuration')
-		.option('-s, --storage <size>', 'The size of the storage node')
+		.option('-s, --storage <size>', 'reserved_space')
 		.option('-n, --needed <needed>', 'shares.needed')
 		.option('-t, --total <total>', 'shares.total')
 		.option('-p, --happy <happy>', 'shares.happy')
