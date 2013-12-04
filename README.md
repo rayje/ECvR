@@ -30,6 +30,9 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [capture](#capture)
 * [startInt](#start-int)
 * [killInt](#kill-int)
+* [put](#put)
+* [get](#get)
+* [config](#config-1)
 
 
 ### Setup
@@ -378,4 +381,3 @@ The config command also supports the following helper flags:
 
 	--debug		Outputs debug content
 	-l			Displays the remote config value without setting it
-	
