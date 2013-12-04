@@ -33,6 +33,7 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [put](#put)
 * [get](#get)
 * [config](#config-1)
+* [list](#list)
 
 
 ### Setup
@@ -258,6 +259,7 @@ A script to run commands on a tahoe node
 		    -t, --total <total>            shares.total
 		    -p, --happy <happy>            shares.happy
 		    -l, --listConfig               Display the current config value
+	    	--list <nodeIp>                List the files stored on the tahoe node
 
 
 ##### Kill
@@ -381,3 +383,16 @@ The config command also supports the following helper flags:
 
 	--debug		Outputs debug content
 	-l			Displays the remote config value without setting it
+
+##### List
+
+Lists the files on a tahoe node
+
+Example:
+
+	$ ./tahoe --list i-000xxxx3
+
+	List: xxx.xxx.xxx.xx1
+	---------------------
+	my_test.txt
+	list.out
