@@ -230,18 +230,31 @@ A script to run commands on a tahoe node
 
 	$ ./tahoe --help
 
-	  Usage: tahoe [options]
+	    Usage: tahoe [options]
 
-	  Options:
+		  Options:
 
-	    -h, --help                    output usage information
-	    -V, --version                 output the version number
-	    -k, --kill <nodeIp>           Stop a storage node
-	    -a, --killAll                 Stop all storage nodes
-	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
-	    --status                      Displays the status of Tahoe on all instances
-	    --debug                       Run in debug mode
-	    --capture                     Capture storage measurement
+		    -h, --help                     output usage information
+		    -V, --version                  output the version number
+		    -k, --kill <nodeIp>            Stop a storage node
+		    -a, --killAll                  Stop all storage nodes
+		    -e, --excludes <instanceIds>   A comma delimted list of excluded instances
+		    --status                       Displays the status of Tahoe on all instances
+		    --debug                        Run in debug mode
+		    --capture                      Capture storage measurement
+		    --startInt <nodeIp>            Start an introducer node on the specified instance
+		    --killInt <nodeIp>             Kill an introducer running on the specified instance
+		    --startAll <introducerNodeIp>  Start tahoe storage nodes on all but the introducer node
+		    --put <nodeId>                 Put a file on tahoe.
+		    --filePath <filePath>          The path to the file used for the put command.
+		    --get <nodeId>                 Get a file from tahoe
+		    --filename <filename>          The name of the remote file
+		    --config <nodeId>              Set a tahoe configuration
+		    -s, --storage <size>           The size of the storage node
+		    -n, --needed <needed>          shares.needed
+		    -t, --total <total>            shares.total
+		    -p, --happy <happy>            shares.happy
+		    -l, --listConfig               Display the current config value
 
 
 ##### Kill
@@ -315,3 +328,54 @@ Example:
 
 	$ ./tahoe --killInt xxx.xxx.xxx.xx1
 
+##### Put
+
+Put a file on tahoe. This command will copy a local file to the tahoe node and run
+the ```tahoe put``` command on the node.
+
+Example:
+
+	$ ./tahoe --put i-000xxxx3 --filePath /tmp/test.txt
+
+The ```put``` command expects the --filePath flag to be a local file path.
+
+**NOTE**: The --filePath is required.
+
+
+##### Get
+
+Gets the contents of a file that was previously PUT on a tahoe node.
+
+Example:
+	
+	$ ./tahoe --get i-000xxxx3 --filename test.txt
+
+The ```get``` command expects the ```filename``` flag to be the name of a file that 
+was previously PUT on a tahoe node.
+
+**NOTE**: The --filename is required.
+
+##### Config
+
+Sets a value in the ```tahoe.cfg``` file on a storage node.
+
+This command supports the following flags to set the related config values:
+
+* -s reserved_space
+* -n shares.needed
+* -t shares.total
+* -p shares.happy
+
+Example:
+
+	$ ./tahoe --config i-000xxxx3 -s 1G
+
+The above example will set the following config value:
+
+	reserved_space = 1G
+
+The config command also supports the following helper flags:
+
+	--debug		Outputs debug content
+	-l			Displays the remote config value without setting it
+	
