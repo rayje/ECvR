@@ -40,6 +40,7 @@ function getOptions() {
 		.option('-t, --total <total>', 'shares.total')
 		.option('-p, --happy <happy>', 'shares.happy')
 		.option('-l, --listConfig', 'Display the current config value')
+		.option('--list <nodeIp>', 'List the files stored on the tahoe node')
 
 	commandLine.parse(process.argv);
 	return commandLine;
