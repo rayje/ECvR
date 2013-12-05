@@ -249,32 +249,32 @@ A script to run commands on a tahoe node
 
 	$ ./tahoe --help
 
-	    Usage: tahoe [options]
+	  Usage: tahoe [options]
 
-		  Options:
+	  Options:
 
-		    -h, --help                     output usage information
-		    -V, --version                  output the version number
-		    -k, --kill <nodeIp>            Stop a storage node
-		    -a, --killAll                  Stop all storage nodes
-		    -e, --excludes <instanceIds>   A comma delimted list of excluded instances
-		    --status                       Displays the status of Tahoe on all instances
-		    --debug                        Run in debug mode
-		    --capture                      Capture storage measurement
-		    --startInt <nodeIp>            Start an introducer node on the specified instance
-		    --killInt <nodeIp>             Kill an introducer running on the specified instance
-		    --startAll <introducerNodeIp>  Start tahoe storage nodes on all but the introducer node
-		    --put <nodeId>                 Put a file on tahoe.
-		    --filePath <filePath>          The path to the file used for the put command.
-		    --get <nodeId>                 Get a file from tahoe
-		    --filename <filename>          The name of the remote file
-		    --config <nodeId>              Set a tahoe configuration
-		    -s, --storage <size>           The size of the storage node
-		    -n, --needed <needed>          shares.needed
-		    -t, --total <total>            shares.total
-		    -p, --happy <happy>            shares.happy
-		    -l, --listConfig               Display the current config value
-	    	--list <nodeIp>                List the files stored on the tahoe node
+	    -h, --help                     output usage information
+	    -V, --version                  output the version number
+	    --kill <nodeIp>                Stop a storage node
+	    --killAll                      Stop all storage nodes
+	    -e, --excludes <instanceIds>   A comma delimted list of excluded instances
+	    --status                       Displays the status of Tahoe on all instances
+	    --debug                        Run in debug mode
+	    --capture                      Capture storage measurement
+	    --startInt <nodeIp>            Start an introducer node on the specified instance
+	    --killInt <nodeIp>             Kill an introducer running on the specified instance
+	    --startAll <introducerNodeIp>  Start tahoe storage nodes on all but the introducer node
+	    --put <nodeId>                 Put a file on tahoe.
+	    --filePath <filePath>          The path to the file used for the put command.
+	    --get <nodeId>                 Get a file from tahoe
+	    --filename <filename>          The name of the remote file
+	    --config <nodeId>              Set a tahoe configuration
+	    -s, --storage <size>           reserved_space
+	    -n, --needed <needed>          shares.needed
+	    -t, --total <total>            shares.total
+	    -p, --happy <happy>            shares.happy
+	    -l, --listConfig               Display the current config value
+	    --list <nodeIp>                List the files stored on the tahoe node	
 
 
 ##### Kill
