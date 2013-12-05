@@ -5,6 +5,8 @@ var commandLine = require('commander'),
 	sprintf = require('sprintf-js').sprintf,
 	fs = require('fs');
 
+var options = getOptions();
+
 var Instances, 
 	instances,
 	getInstances,
@@ -23,7 +25,6 @@ instances = new Instances(config.futuregrid);
 getInstances();
 
 function getFgInstances() {
-	var options = getOptions();
 	validateOptons(options);
 
 	instances.get(function(err, results) {
