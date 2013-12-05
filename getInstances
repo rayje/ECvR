@@ -3,19 +3,25 @@
 var commandLine = require('commander'),
 	config = require('./config.json'),
 	sprintf = require('sprintf-js').sprintf,
-	fs = require('fs');
+	fs = require('fs'), 
+	path = require('path');
 
 var options = getOptions();
 
 var instances,
 	getInstances,
 	isEc2 = config.isEC2 || false,
+	isLocal = config.isLocal || false,
 	rKeys = ['instanceId', 'imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress', 'instanceState'];
 
 if (isEc2) {
 	var Instances = require('./lib/ec2Instances');
 	instances = new Instances(config.ec2);
 	getInstances = getEc2Instances;
+} else if (isLocal) {
+	var Instances = require('./lib/instances');
+	getInstances = getLocalInstances;
+	instances = new Instances(config.futuregrid);
 } else {
 	var Instances = require('./lib/instances');
 	instances = new Instances(config.futuregrid);
@@ -79,6 +85,26 @@ function getEc2Instances() {
 		instances.printResults(matches);
 		writeResults(matches);
 	});
+}
+
+function getLocalInstances() {
+	var ips = [139,140,141,142,143,144,145,146];
+
+	var matches = [];
+	ips.forEach(function(ip){
+		matches.push({
+			instanceId: ip,
+			imageId: 'local',
+			keyName: path.basename(config.stor.privateKey),
+			instanceType: 'NA',
+			ipAddress: '192.168.1.'+ip,
+			privateIpAddress: '192.168.1.'+ip,
+			instanceState: 'NA'
+		});
+	});
+
+	instances.printResults(matches);
+	writeResults(matches);
 }
 
 function writeResults(results) {
