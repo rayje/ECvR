@@ -62,16 +62,12 @@ The config file is expected to contain the following format:
 			"privateKey": "location of stor private key",
 			"username": "ubuntu"
 		},
+		"ec2": {
+		    "accessKeyId": "AWS Access Key Id",
+		    "secretAccessKey": "AWS Secret Key",
+		    "region": "us-west-2"
+		},
 		"isEC2": true
-	}
-
-**NOTE**: When ```isEC2``` is set to true, an ```aws-config.json``` is expected to exist in the 
-same directory as the ```config.json```. The ```aws-config.json``` should follow this format:
-
-	{
-	    "accessKeyId": "akid",
-	    "secretAccessKey": "secret",
-	    "region": "us-west-2" 
 	}
 
 
@@ -96,18 +92,15 @@ script will write the result in JSON format to a file named ```instances.json```
 	    --imageId <imageId>  The image id used to filter the search. (FutureGrid)
 	    --keyName <keyName>  The keyName used to filter the search. (FutureGrid)
 
-**NOTE**: For **EC2** this script requires that the ```isEC2``` field is set to true
-in ```config.json```. 
-
 **NOTE**: When run on EC2, this scripts takes no options.
 
-To run the script:
+To run the script on Future Grid:
 
 	$ ./getInstances --imageId <imageId> --keyName <keyName>
 
 **Note**: ```imageId``` is required for Future Grid
 
-on EC2
+To run the script on EC2
 
 	$ ./getInstances
 

@@ -7,21 +7,21 @@ var commandLine = require('commander'),
 
 var options = getOptions();
 
-var Instances, 
-	instances,
+var instances,
 	getInstances,
 	isEc2 = config.isEC2 || false,
 	rKeys = ['instanceId', 'imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress', 'instanceState'];
 
 if (isEc2) {
-	Instances = require('./lib/ec2Instances');
+	var Instances = require('./lib/ec2Instances');
+	instances = new Instances(config.ec2);
 	getInstances = getEc2Instances;
 } else {
-	Instances = require('./lib/instances');
+	var Instances = require('./lib/instances');
+	instances = new Instances(config.futuregrid);
 	getInstances = getFgInstances;
 }
 
-instances = new Instances(config.futuregrid);
 getInstances();
 
 function getFgInstances() {
