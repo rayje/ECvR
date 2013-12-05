@@ -1,37 +1,84 @@
 #!/usr/bin/env node
 
 var commandLine = require('commander'),
-	Instances = require('./lib/instances'),
 	config = require('./config.json'),
 	sprintf = require('sprintf-js').sprintf,
 	fs = require('fs');
 
-var options = getOptions();
-validateOptons(options);
+var Instances, 
+	instances,
+	getInstances,
+	isEc2 = config.isEC2 || false,
+	rKeys = ['instanceId', 'imageId', 'keyName', 'instanceType', 'ipAddress', 'privateIpAddress', 'instanceState'];
 
-var instances = new Instances(config.futuregrid);
+if (isEc2) {
+	Instances = require('./lib/ec2Instances');
+	getInstances = getEc2Instances;
+} else {
+	Instances = require('./lib/instances');
+	getInstances = getFgInstances;
+}
 
-instances.get(function(err, results) {
-	if (err) {
-		return console.log(err);
-	}
+instances = new Instances(config.futuregrid);
+getInstances();
 
-	var matches = []
-	results.forEach(function(result) {
-		if (result.hasOwnProperty('imageId') && result.imageId === options.imageId) {
-			if (options.keyName) {
-				if (result.hasOwnProperty('keyName') && result.keyName === options.keyName) {
-					matches.push(result);	
-				}
-			} else {
-				matches.push(result);
-			}
+function getFgInstances() {
+	var options = getOptions();
+	validateOptons(options);
+
+	instances.get(function(err, results) {
+		if (err) {
+			return console.log(err);
 		}
-	});
 
-	instances.printResults(matches);
-	writeResults(matches);
-});
+		var matches = []
+		results.forEach(function(result) {
+			if (result.hasOwnProperty('imageId') && result.imageId === options.imageId) {
+				if (options.keyName) {
+					if (result.hasOwnProperty('keyName') && result.keyName === options.keyName) {
+						matches.push(result);	
+					}
+				} else {
+					matches.push(result);
+				}
+			}
+		});
+
+		instances.printResults(matches);
+		writeResults(matches);
+	});
+}
+
+function getEc2Instances() {
+	var keys = ['InstanceId', 'ImageId', 'KeyName', 'InstanceType', 'PublicIpAddress', 'PrivateIpAddress', 'State'];
+
+	instances.describeInstances(function(err, results) {
+		if (err) {
+			return console.log(err);
+		}
+
+		var matches = [];
+		var reservations = results["Reservations"];
+		reservations.forEach(function(reservation){
+			var instes = reservation["Instances"];
+			instes.forEach(function(instance){
+				if (instance['State']['Name'] === 'running') {
+					for (var i=0; i<keys.length; i++){
+						if (keys[i] === 'State') {
+							instance['instanceState'] = instance['State']['Name'];
+						} else {
+							instance[rKeys[i]] = instance[keys[i]];	
+						}
+					}
+					matches.push(instance);
+				}
+			});
+		});
+
+		instances.printResults(matches);
+		writeResults(matches);
+	});
+}
 
 function writeResults(results) {
 	fs.writeFile('instances.json', JSON.stringify(results), function(err) {
@@ -45,8 +92,8 @@ function getOptions() {
 	commandLine
 		.version('0.0.1')
 		.description('Used to get the instances that match a pattern and write them to a file.')
-		.option('--imageId <imageId>', 'The image id used to filter the search.')
-		.option('--keyName <keyName>', 'The keyName used to filter the search.')
+		.option('--imageId <imageId>', 'The image id used to filter the search. (FutureGrid)')
+		.option('--keyName <keyName>', 'The keyName used to filter the search. (FutureGrid)')
 
 	commandLine.parse(process.argv);
 	return commandLine;
