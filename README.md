@@ -82,7 +82,7 @@ The following is a description of the scripts contained in this repo.
 
 #### getInstances
 
-Gets information of future grid instances associated with the Stor project. This
+Gets information of Future Grid or EC2 instances associated with the Stor project. This
 script will write the result in JSON format to a file named ```instances.json```.
 
 	$ ./getInstances --help
@@ -96,7 +96,7 @@ script will write the result in JSON format to a file named ```instances.json```
 	    --imageId <imageId>  The image id used to filter the search. (FutureGrid)
 	    --keyName <keyName>  The keyName used to filter the search. (FutureGrid)
 
-**NOTE**: For EC2 this script requires that the ```isEC2``` field is set to true
+**NOTE**: For **EC2** this script requires that the ```isEC2``` field is set to true
 in ```config.json```. 
 
 **NOTE**: When run on EC2, this scripts takes no options.
@@ -105,11 +105,13 @@ To run the script:
 
 	$ ./getInstances --imageId <imageId> --keyName <keyName>
 
+**Note**: ```imageId``` is required for Future Grid
+
 on EC2
 
 	$ ./getInstances
 
-**Note**: ```imageId``` is required
+
 
 #### readInstances
 
