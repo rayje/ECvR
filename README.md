@@ -12,6 +12,8 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 
 * [getInstances](#getinstances)
 * [readInstances](#readinstances)
+* [tahoe-setup](#tahoe-setup)
+* [tahoe-teardown](#tahoe-teardown)
 
 ### [Stor](#stor-1)
 * [start](#start)
@@ -124,6 +126,24 @@ Reads and displays the content found in the file ```instances.json``` in tabular
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
 	i-000xxxxx  | ami-000xxxxx  | my-key  | m1.small     | xxx.xxx.xxx.xxx  | xxx.xxx.xxx.xxx  |
+
+
+#### tahoe-setup
+
+Sets up tahoe on all nodes. This script will run all the required commands to
+get tahoe setup on all nodes. This scripts expects the ```instances.json```
+file to have been create with the ```getInstances``` script.
+
+	$ ./tahoe-setup <introducer-ip>
+
+#### tahoe-teardown
+
+Tears down all tahoe nodes. This command will remove the setup created from the
+```tahoe-setup``` script. This scripts expects the ```instances.json```
+file to have been create with the ```getInstances``` script.
+
+	$ ./tahoe-teardown <introducer-ip>
+
 
 stor
 ----
