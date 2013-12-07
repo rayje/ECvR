@@ -18,10 +18,12 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [startAll](#start-all)
 * [stop](#stop)
 * [stopAll](#stop-all)
+* [stopN](#stop-n)
 * [status](#status)
 * [putFile](#put-file)
 * [getFile](#get-file)
 * [getUsage](#get-usage)
+* [createStopFile](#create-stop-file)
 
 ### [Tahoe](#tahoe-1)
 * [kill](#kill)
@@ -129,19 +131,28 @@ A script to run stor commands on a remote server.
 
 	  Options:
 
-	    -h, --help                    output usage information
-	    -V, --version                 output the version number
-	    --start <instanceId>          Start the stor server on a specific instance
-	    --startAll                    Start the stor server on all instances
-	    -p, --ringServer <ipAddress>  The ip address of the Pastry ring server
-	    -m, --capacity <capacity>     The storage capacity for the Stor server [Default: 10]
-	    -d, --storage <directory>     The storage directory for the Stor server [Default: $HOME/Stor_Age]
-	    -r, --replication <rep>       The replication factor setting [Default: 5]
-	    --stop <instanceId>           Stop the stor server in a specific instance
-	    --stopAll                     Stop the stor server on all instances
-	    -e, --excludes <instanceIds>  A comma delimted list of excluded instances
-	    --status                      Displays the status of Stor on all instances
-	    --getUsage 			  Displays the file system usage for all instances
+	    -h, --help                         output usage information
+	    -V, --version                      output the version number
+	    --start <instanceId>               Start the stor server on a specific instance
+	    --startAll                         Start the stor server on all instances
+	    -p, --ringServer <ipAddress>       The ip address of the Pastry ring server
+	    -m, --capacity <capacity>          The storage capacity for the Stor server [Default: 10]
+	    -d, --storage <directory>          The storage directory for the Stor server [Default: $HOME/Stor_Age]
+	    -r, --replication <rep>            The replication factor setting [Default: 5]
+	    --stop <instanceId>                Stop the stor server in a specific instance
+	    --stopAll                          Stop the stor server on all instances
+	    -e, --excludes <instanceIds>       A comma delimted list of excluded instances
+	    --stopN                            Stop N instances, reads from instances-ips.json
+	    -n, --numInstances <numInstances>  The number of instances to stop
+	    -i, --startIndex <index>           The index to start the stop within the stop file (instances-ips.json)
+	    --status                           Displays the status of Stor on all instances
+	    --debug                            Run in debug mode
+	    --put <instanceId>                 Execute the stor client PUT command on the specified instanceId
+	    --filePath <filePath>              File path for the file to save in Stor
+	    --get <instanceId>                 Execute the stor client GET command on the specified instanceId
+	    --fileKey <fileKey>                File key as returned by the PUT command
+	    --getUsage                         Get file system space usage for all instances
+	    --createStopFile                   Creates a file that can be used with the stop command (instances-ips.json)
 
 #### Commands
 
@@ -196,6 +207,25 @@ or
 	
 	$ ./stor --stopAll -e <public address>
 
+##### Stop N
+
+Stops the Stor server on N instances.
+
+**Note**: This command requires that the ```createStopFile``` command was run at least once 
+and there exists a ```instance-ips.json``` file in the same directory as ```instances.json```.
+
+Arguments:
+
+	-i	The index of the first instance
+	-n	The number of instances to stop
+
+Example:
+
+	$ ./stor --stopN -i 0 -n 10
+
+The above command will read the ```instance-ips.json``` file and read the first ```10``` ip
+addresses, and run the ```stor -k``` command on those instances.
+
 ##### Put File
 
 Executes the PUT command on the instance of the Stor server identified.
@@ -241,6 +271,20 @@ Example:
 
 	xxx.xxx.xxx.xxa - Ok - 12345
 	xxx.xxx.xxx.xxb - Err - Error info
+
+##### Create Stop File
+
+Creates a file named ```instance-ips.json``` that consists of the public addresses
+of all instances. 
+
+**Note**: This command will shuffle the addresses, so they will not appear
+in the same order as they appear when the ```readInstances``` or ```getInstances``` 
+scripts are run.
+
+Example: 
+
+	$ ./stor --createStopFile
+
 	
 tahoe
 -----

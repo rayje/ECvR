@@ -31,6 +31,9 @@ function getOptions() {
 		.option('--stop <instanceId>', 'Stop the stor server in a specific instance')
 		.option('--stopAll', 'Stop the stor server on all instances')
 		.option('-e, --excludes <instanceIds>', 'A comma delimted list of excluded instances')
+		.option('--stopN', 'Stop N instances, reads from instances-ips.json')
+		.option('-n, --numInstances <numInstances>', 'The number of instances to stop', Number)
+		.option('-i, --startIndex <index>', 'The index to start the stop within the stop file (instances-ips.json)', Number)
 		.option('--status', 'Displays the status of Stor on all instances')
 		.option('--debug', 'Run in debug mode')
 		.option('--put <instanceId>', 'Execute the stor client PUT command on the specified instanceId')
@@ -38,6 +41,7 @@ function getOptions() {
 		.option('--get <instanceId>', 'Execute the stor client GET command on the specified instanceId')
 		.option('--fileKey <fileKey>', 'File key as returned by the PUT command')
 		.option('--getUsage', 'Get file system space usage for all instances')
+		.option('--createStopFile', 'Creates a file that can be used with the stop command (instances-ips.json)');
 
 	commandLine.parse(process.argv);
 	return commandLine;
