@@ -39,8 +39,12 @@ function getOptions() {
 		.option('-n, --needed <needed>', 'shares.needed')
 		.option('-t, --total <total>', 'shares.total')
 		.option('-p, --happy <happy>', 'shares.happy')
+		.option('-x, --port <happy>', 'tub.port')
 		.option('-l, --listConfig', 'Display the current config value')
 		.option('--list <nodeIp>', 'List the files stored on the tahoe node')
+		.option('--create <node>', 'Creates a storage node, if not already created')
+		.option('--listAliases', 'List aliases on all nodes')
+		.option('--createAliases', 'Creates the tahoe alias on all nodes, if it does not exist')
 
 	commandLine.parse(process.argv);
 	return commandLine;
