@@ -35,8 +35,13 @@ A set of test scripts for verifying Erasure Coding vs Replication.
 * [put](#put)
 * [get](#get)
 * [config](#config-1)
+* [configAll](#config-all)
 * [list](#list)
-
+* [create](#create)
+* [createAll](#create-all)
+* [deleteAll](#delete-all)
+* [listAliases](#list-aliases)
+* [createAliases](#create-aliases)
 
 ### Setup
 
@@ -313,12 +318,19 @@ A script to run commands on a tahoe node
 	    --get <nodeId>                 Get a file from tahoe
 	    --filename <filename>          The name of the remote file
 	    --config <nodeId>              Set a tahoe configuration
+	    --configAll                    Set a tahoe configuration on all nodes
 	    -s, --storage <size>           reserved_space
 	    -n, --needed <needed>          shares.needed
 	    -t, --total <total>            shares.total
 	    -p, --happy <happy>            shares.happy
+	    -x, --port <happy>             tub.port
 	    -l, --listConfig               Display the current config value
-	    --list <nodeIp>                List the files stored on the tahoe node	
+	    --list <nodeIp>                List the files stored on the tahoe node
+	    --create <node>                Creates a storage node, if not already created
+	    --createAll                    Create a storage node on all instances
+	    --deleteAll                    Delete all storage nodes from all instances
+	    --listAliases                  List aliases on all nodes
+	    --createAliases                Creates the tahoe alias on all nodes, if it does not exist	
 
 
 ##### Kill
@@ -429,6 +441,7 @@ This command supports the following flags to set the related config values:
 * -n shares.needed
 * -t shares.total
 * -p shares.happy
+* -x tub.port
 
 Example:
 
@@ -443,6 +456,15 @@ The config command also supports the following helper flags:
 	--debug		Outputs debug content
 	-l			Displays the remote config value without setting it
 
+##### Config All
+
+The same as Config, except applies selected configuration to all nodes
+
+Example:
+
+	$ ./tahoe --configAll -s 1G	
+
+
 ##### List
 
 Lists the files on a tahoe node
@@ -455,3 +477,48 @@ Example:
 	---------------------
 	my_test.txt
 	list.out
+
+##### Create 
+
+Creates a storage node, if not already created. This command will run the
+```tahoe create-node -d .tahoe tahoe``` command on a single node. 
+
+Example:
+
+	$ ./tahoe --create i-000xxxx3
+
+##### Create All
+
+Create a storage node on all instances. This will run the above ```--create```
+command on all nodes.
+
+Example:
+
+	$ ./tahoe --createAll                    
+
+##### Delete All
+
+Delete all storage nodes from all instances. This command will remove the 
+```.tahoe``` directory from all nodes.
+
+Example:
+	
+	$ ./tahoe --deleteAll    
+
+##### List Aliases
+
+List aliases on all nodes. This command will run the ```tahoe list-aliases```
+command on all nodes.
+
+Example:
+	    
+	$ ./tahoe --listAliases    
+
+##### Create Aliases
+
+Creates the tahoe alias on all nodes, if it does not exist. This command will
+run the ```tahoe create-alias tahoe``` command on all nodes.      
+	    
+Example:
+
+	$ ./tahoe --createAliases                
