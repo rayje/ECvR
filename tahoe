@@ -35,6 +35,7 @@ function getOptions() {
 		.option('--get <nodeId>', 'Get a file from tahoe')
 		.option('--filename <filename>', 'The name of the remote file')
 		.option('--config <nodeId>', 'Set a tahoe configuration')
+		.option('--configAll', 'Set a tahoe configuration on all nodes')
 		.option('-s, --storage <size>', 'reserved_space')
 		.option('-n, --needed <needed>', 'shares.needed')
 		.option('-t, --total <total>', 'shares.total')
@@ -43,6 +44,8 @@ function getOptions() {
 		.option('-l, --listConfig', 'Display the current config value')
 		.option('--list <nodeIp>', 'List the files stored on the tahoe node')
 		.option('--create <node>', 'Creates a storage node, if not already created')
+		.option('--createAll', 'Create a storage node on all instances')
+		.option('--deleteAll', 'Delete all storage nodes from all instances')
 		.option('--listAliases', 'List aliases on all nodes')
 		.option('--createAliases', 'Creates the tahoe alias on all nodes, if it does not exist')
 

@@ -21,15 +21,11 @@ log "Creating INTRODUCER"
 
 # Create storage nodes
 log "Creating Storage Nodes"
-for i in $IPS; do
-	./tahoe --create $i
-done
+./tahoe --createAll
 
 # Set comm port to 46395
 log "Setting comm port: 46395"
-for i in $IPS; do 
-	./tahoe --config $i -x 46395; 
-done
+./tahoe --configAll -x 46395; 
 
 # Start storage nodes
 log "Starting all storage nodes"
