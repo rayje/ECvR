@@ -41,7 +41,7 @@ function getOptions() {
 		.option('--get <instanceId>', 'Execute the stor client GET command on the specified instanceId')
 		.option('--fileKey <fileKey>', 'File key as returned by the PUT command')
 		.option('--getUsage', 'Get file system space usage for all instances')
-		.option('--createStopFile', 'Creates a file that can be used with the stop command (instances-ips.json)');
+		.option('--createStopFile <ringServer ip>', 'Creates a file that can be used with the stop command (instances-ips.json)');
 
 	commandLine.parse(process.argv);
 	return commandLine;

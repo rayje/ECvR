@@ -306,9 +306,12 @@ of all instances.
 in the same order as they appear when the ```readInstances``` or ```getInstances``` 
 scripts are run.
 
+This command also takes the public ip address of the ring server. This excludes the
+ring server from the list of addresses generated.
+
 Example: 
 
-	$ ./stor --createStopFile
+	$ ./stor --createStopFile xxx.xxx.xxx.xx1
 
 	
 tahoe
