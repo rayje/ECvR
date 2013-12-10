@@ -1,0 +1,56 @@
+RingServerIP=10.73.172.254
+RingServerPubIP=54.196.115.144
+RingServerInstance=i-22168e46
+
+ClientInstance=i-2e168e4a
+ClientInstancePubIP=54.196.109.106
+TotalInstances=6
+StepKill=2
+
+
+#for j in 2 4 8 12; do
+for j in 2 3; do         # replication factors
+
+   ./stor --createStopFile -e $RingServerPubIP,$ClientInstancePubIP
+   ./stor --start $RingServerInstance -p $RingServerIP -r $j -m 100
+   ./stor --startAll -p $RingServerIP -r $j
+
+    for i in $(./stor --status | grep false | awk '{print $1}'); do ./stor --start $i -p $RingServerIP -r $j; done
+
+   r=$(./stor --put i-2e168e4a --filePath /root/ECvR/testFile1.txt)
+   FILEKEY=$(echo $r | sed 's/^.*result=\(.*\), errorMessage.*/\1/')
+
+   ssh -i ../rcholic-os-subrat.pem ubuntu@$ClientInstancePubIP 'rm -rf Stor_Age'
+   ./stor --stop $ClientInstance
+   ./stor --start $ClientInstance -p $RingServerIP -r $j
+
+   z=$(./stor --get i-2e168e4a --fileKey $FILEKEY)
+
+   x=$(echo $z | sed 's/.*\(Lookup failed\).*/\1/')
+ for k in `seq 1 $maxrepeat`  #10 times repeat each replication factor
+ do
+  INTERVAL=0
+
+
+   while [ "$x" != "Lookup failed" ]
+   do
+   ssh -i ../rcholic-os-subrat.pem ubuntu@$ClientInstancePubIP 'rm -rf Stor_Age'
+   ./stor --stop $ClientInstance
+   ./stor --start $ClientInstance -p $RingServerIP -r $j
+
+     ./stor --stopN -i $INTERVAL -n $StepKill      #$StepKill kill how many instance each time?
+     INTERVAL=`expr $INTERVAL + $StepKill`
+
+     z=$(./stor --get i-2e168e4a --fileKey $FILEKEY)
+     x=$(echo $z | sed 's/.*\(Lookup failed\).*/\1/')
+
+   done
+
+   touch ./testCase1_Results/stor.avail.$j
+#   lastNumPeers=(( $TotalInstances-$INTERVAL-$j ))  # the number of peers before retrieval failure
+    lastNumPeers=`expr $INTERVAL - $StepKill`
+#  echo $j" - "$INTERVAL >> ./testCase1_Results/stor.avail.$j
+   echo $j" - "$lastNumPeers >> ./testCase1_Results/stor.avail.$j
+ done
+ ./stor --stopAll
+done
