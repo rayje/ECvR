@@ -14,12 +14,15 @@ for j in 2 3; do         # replication factors
    ./stor --createStopFile -e $RingServerPubIP,$ClientInstancePubIP
    ./stor --start $RingServerInstance -p $RingServerIP -r $j -m 100
    ./stor --startAll -p $RingServerIP -r $j
-
+      
+    #start those failed stor servers
     for i in $(./stor --status | grep false | awk '{print $1}'); do ./stor --start $i -p $RingServerIP -r $j; done
-
+   
+   #PUT a file on the network, and capture the returned fileId
    r=$(./stor --put i-2e168e4a --filePath /root/ECvR/testFile1.txt)
    FILEKEY=$(echo $r | sed 's/^.*result=\(.*\), errorMessage.*/\1/')
 
+   #delete the Storage folder on the client, and restart the client
    ssh -i ../rcholic-os-subrat.pem ubuntu@$ClientInstancePubIP 'rm -rf Stor_Age'
    ./stor --stop $ClientInstance
    ./stor --start $ClientInstance -p $RingServerIP -r $j
